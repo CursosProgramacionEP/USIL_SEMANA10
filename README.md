@@ -30,7 +30,7 @@ Cada carpeta es un proyecto independiente con su propio `Main.java`.
 | Constructor de la superclase | `super(...)` como **primera línea** del constructor de la subclase |
 | Método redefinido | `@Override` sobre el método en la subclase |
 
-**Cómo leer los diagramas:** `-` es atributo privado, `#` es atributo protegido, `+` es constructor o método público. Cada diagrama muestra **todas** las clases con los mismos atributos, constructores y métodos que tiene el código de su carpeta.
+**Cómo leer los diagramas:** se usa la notación UML estándar `visibilidad nombre: Tipo` (por ejemplo `-nombre: String`, `+mostrar() : void`). `-` es privado, `#` es protegido y `+` es público. Cada diagrama muestra **todas** las clases con los mismos atributos, constructores y métodos que tiene el código de su carpeta; en las diapositivas los diagramas van abreviados para que se lean proyectados.
 
 ---
 
@@ -43,31 +43,31 @@ Las partes son **tres clases distintas**, no una lista. La `Computadora` hace el
 ```mermaid
 classDiagram
     class Computadora {
-        -String marca
-        -Teclado teclado
-        -Monitor monitor
-        -CPU cpu
-        +Computadora(String marca)
-        +mostrar() void
+        -marca: String
+        -teclado: Teclado
+        -monitor: Monitor
+        -cpu: CPU
+        +Computadora(marca: String)
+        +mostrar() : void
     }
     class Teclado {
-        -String modelo
-        +Teclado(String modelo)
-        +getModelo() String
+        -modelo: String
+        +Teclado(modelo: String)
+        +getModelo() : String
     }
     class Monitor {
-        -String marca
-        -int pulgadas
-        +Monitor(String marca, int pulgadas)
-        +getMarca() String
-        +getPulgadas() int
+        -marca: String
+        -pulgadas: int
+        +Monitor(marca: String, pulgadas: int)
+        +getMarca() : String
+        +getPulgadas() : int
     }
     class CPU {
-        -String fabricante
-        -double velocidad
-        +CPU(String fabricante, double velocidad)
-        +getFabricante() String
-        +getVelocidad() double
+        -fabricante: String
+        -velocidad: double
+        +CPU(fabricante: String, velocidad: double)
+        +getFabricante() : String
+        +getVelocidad() : double
     }
     Computadora "1" *-- "1" Teclado
     Computadora "1" *-- "1" Monitor
@@ -85,18 +85,18 @@ Repaso corto. El mismo `Jugador` está en dos equipos a la vez y sobrevive a la 
 ```mermaid
 classDiagram
     class Equipo {
-        -String nombre
-        -ArrayList~Jugador~ jugadores
-        +Equipo(String nombre)
-        +agregarJugador(Jugador j) void
-        +mostrar() void
+        -nombre: String
+        -jugadores: ArrayList~Jugador~
+        +Equipo(nombre: String)
+        +agregarJugador(j: Jugador) : void
+        +mostrar() : void
     }
     class Jugador {
-        -String nombre
-        -int edad
-        +Jugador(String nombre, int edad)
-        +getNombre() String
-        +getEdad() int
+        -nombre: String
+        -edad: int
+        +Jugador(nombre: String, edad: int)
+        +getNombre() : String
+        +getEdad() : int
     }
     Equipo "*" o-- "*" Jugador : jugadores
 ```
@@ -110,27 +110,27 @@ El nivel del medio (`Pedido`) es **parte** de la tienda y a la vez **todo** de s
 ```mermaid
 classDiagram
     class Tienda {
-        -String nombre
-        -ArrayList~Pedido~ pedidos
-        +Tienda(String nombre)
-        +registrarPedido(Pedido p) void
-        +ventaTotal() double
-        +mostrar() void
+        -nombre: String
+        -pedidos: ArrayList~Pedido~
+        +Tienda(nombre: String)
+        +registrarPedido(p: Pedido) : void
+        +ventaTotal() : double
+        +mostrar() : void
     }
     class Pedido {
-        -String codigo
-        -ArrayList~Producto~ productos
-        +Pedido(String codigo)
-        +agregarProducto(Producto p) void
-        +total() double
-        +mostrar() void
+        -codigo: String
+        -productos: ArrayList~Producto~
+        +Pedido(codigo: String)
+        +agregarProducto(p: Producto) : void
+        +total() : double
+        +mostrar() : void
     }
     class Producto {
-        -String nombre
-        -double precio
-        +Producto(String nombre, double precio)
-        +getNombre() String
-        +getPrecio() double
+        -nombre: String
+        -precio: double
+        +Producto(nombre: String, precio: double)
+        +getNombre() : String
+        +getPrecio() : double
     }
     Tienda "1" o-- "*" Pedido : pedidos
     Pedido "*" o-- "*" Producto : productos
@@ -149,25 +149,25 @@ Los tres datos comunes (`codigo`, `nombre`, `dni`) se escriben **una sola vez** 
 ```mermaid
 classDiagram
     class Empleado {
-        #int codigo
-        #String nombre
-        #String dni
-        +Empleado(int codigo, String nombre, String dni)
-        +calcularSueldo() double
-        +mostrar() void
+        #codigo: int
+        #nombre: String
+        #dni: String
+        +Empleado(codigo: int, nombre: String, dni: String)
+        +calcularSueldo() : double
+        +mostrar() : void
     }
     class EmpleadoContratado {
-        -double sueldoMensual
-        +EmpleadoContratado(int codigo, String nombre, String dni, double sueldoMensual)
-        +calcularSueldo() double
-        +mostrar() void
+        -sueldoMensual: double
+        +EmpleadoContratado(codigo: int, nombre: String, dni: String, sueldoMensual: double)
+        +calcularSueldo() : double
+        +mostrar() : void
     }
     class EmpleadoPorHoras {
-        -int horasTrabajadas
-        -double tarifaHora
-        +EmpleadoPorHoras(int codigo, String nombre, String dni, int horasTrabajadas, double tarifaHora)
-        +calcularSueldo() double
-        +mostrar() void
+        -horasTrabajadas: int
+        -tarifaHora: double
+        +EmpleadoPorHoras(codigo: int, nombre: String, dni: String, horasTrabajadas: int, tarifaHora: double)
+        +calcularSueldo() : double
+        +mostrar() : void
     }
     Empleado <|-- EmpleadoContratado
     Empleado <|-- EmpleadoPorHoras
@@ -182,23 +182,23 @@ Un solo arreglo `Vehiculo[]` guarda objetos de los tres tipos. Al llamar `v.most
 ```mermaid
 classDiagram
     class Vehiculo {
-        #String placa
-        #String marca
-        #String modelo
-        +Vehiculo(String placa, String marca, String modelo)
-        +arrancar() void
-        +mostrar() void
+        #placa: String
+        #marca: String
+        #modelo: String
+        +Vehiculo(placa: String, marca: String, modelo: String)
+        +arrancar() : void
+        +mostrar() : void
     }
     class Auto {
-        -int numeroPuertas
-        +Auto(String placa, String marca, String modelo, int numeroPuertas)
-        +abrirMaletero() void
-        +mostrar() void
+        -numeroPuertas: int
+        +Auto(placa: String, marca: String, modelo: String, numeroPuertas: int)
+        +abrirMaletero() : void
+        +mostrar() : void
     }
     class Camioneta {
-        -boolean tieneTolva
-        +Camioneta(String placa, String marca, String modelo, boolean tieneTolva)
-        +mostrar() void
+        -tieneTolva: boolean
+        +Camioneta(placa: String, marca: String, modelo: String, tieneTolva: boolean)
+        +mostrar() : void
     }
     Vehiculo <|-- Auto
     Vehiculo <|-- Camioneta
@@ -230,25 +230,25 @@ Un doctor puede trabajar en varios departamentos y en varios hospitales, así qu
 ```mermaid
 classDiagram
     class Hospital {
-        -String nombre
-        -ArrayList~Departamento~ departamentos
-        +Hospital(String nombre)
-        +agregarDepartamento(Departamento d) void
-        +mostrar() void
+        -nombre: String
+        -departamentos: ArrayList~Departamento~
+        +Hospital(nombre: String)
+        +agregarDepartamento(d: Departamento) : void
+        +mostrar() : void
     }
     class Departamento {
-        -String nombre
-        -ArrayList~Doctor~ doctores
-        +Departamento(String nombre)
-        +agregarDoctor(Doctor d) void
-        +mostrar() void
+        -nombre: String
+        -doctores: ArrayList~Doctor~
+        +Departamento(nombre: String)
+        +agregarDoctor(d: Doctor) : void
+        +mostrar() : void
     }
     class Doctor {
-        -String nombre
-        -String especialidad
-        +Doctor(String nombre, String especialidad)
-        +getNombre() String
-        +getEspecialidad() String
+        -nombre: String
+        -especialidad: String
+        +Doctor(nombre: String, especialidad: String)
+        +getNombre() : String
+        +getEspecialidad() : String
     }
     Hospital "1" o-- "*" Departamento : departamentos
     Departamento "*" o-- "*" Doctor : doctores
@@ -261,23 +261,23 @@ El caso espejo del anterior. Un departamento **solo existe dentro de su facultad
 ```mermaid
 classDiagram
     class Universidad {
-        -String nombre
-        -ArrayList~Facultad~ facultades
-        +Universidad(String nombre)
-        +agregarFacultad(String nombreFacultad) Facultad
-        +mostrar() void
+        -nombre: String
+        -facultades: ArrayList~Facultad~
+        +Universidad(nombre: String)
+        +agregarFacultad(nombreFacultad: String) : Facultad
+        +mostrar() : void
     }
     class Facultad {
-        -String nombre
-        -ArrayList~Departamento~ departamentos
-        +Facultad(String nombre)
-        +agregarDepartamento(String nombreDepartamento) void
-        +mostrar() void
+        -nombre: String
+        -departamentos: ArrayList~Departamento~
+        +Facultad(nombre: String)
+        +agregarDepartamento(nombreDepartamento: String) : void
+        +mostrar() : void
     }
     class Departamento {
-        -String nombre
-        +Departamento(String nombre)
-        +getNombre() String
+        -nombre: String
+        +Departamento(nombre: String)
+        +getNombre() : String
     }
     Universidad "1" *-- "1..*" Facultad : facultades
     Facultad "1" *-- "1..*" Departamento : departamentos
@@ -290,23 +290,23 @@ classDiagram
 ```mermaid
 classDiagram
     class Instituto {
-        -String nombre
-        -ArrayList~Profesor~ profesores
-        +Instituto(String nombre)
-        +agregarProfesor(Profesor p) void
-        +sueldoTotal() double
-        +sueldoPromedio() double
-        +mostrar() void
+        -nombre: String
+        -profesores: ArrayList~Profesor~
+        +Instituto(nombre: String)
+        +agregarProfesor(p: Profesor) : void
+        +sueldoTotal() : double
+        +sueldoPromedio() : double
+        +mostrar() : void
     }
     class Profesor {
-        -String nombre
-        -int horasTrabajadas
-        -double tarifaHora
-        +Profesor(String nombre, int horasTrabajadas, double tarifaHora)
-        +calcularSueldo() double
-        +getNombre() String
-        +getHorasTrabajadas() int
-        +getTarifaHora() double
+        -nombre: String
+        -horasTrabajadas: int
+        -tarifaHora: double
+        +Profesor(nombre: String, horasTrabajadas: int, tarifaHora: double)
+        +calcularSueldo() : double
+        +getNombre() : String
+        +getHorasTrabajadas() : int
+        +getTarifaHora() : double
     }
     Instituto "1" o-- "*" Profesor : profesores
 ```
@@ -316,23 +316,23 @@ classDiagram
 ```mermaid
 classDiagram
     class Universidad {
-        -String nombre
-        -ArrayList~Facultad~ facultades
-        +Universidad(String nombre)
-        +agregarFacultad(String nombre, int cantidadAlumnos, double pension) void
-        +facultadMayorIngreso() String
-        +totalAlumnos() int
-        +mostrar() void
+        -nombre: String
+        -facultades: ArrayList~Facultad~
+        +Universidad(nombre: String)
+        +agregarFacultad(nombre: String, cantidadAlumnos: int, pension: double) : void
+        +facultadMayorIngreso() : String
+        +totalAlumnos() : int
+        +mostrar() : void
     }
     class Facultad {
-        -String nombre
-        -int cantidadAlumnos
-        -double pension
-        +Facultad(String nombre, int cantidadAlumnos, double pension)
-        +calcularIngreso() double
-        +getNombre() String
-        +getCantidadAlumnos() int
-        +getPension() double
+        -nombre: String
+        -cantidadAlumnos: int
+        -pension: double
+        +Facultad(nombre: String, cantidadAlumnos: int, pension: double)
+        +calcularIngreso() : double
+        +getNombre() : String
+        +getCantidadAlumnos() : int
+        +getPension() : double
     }
     Universidad "1" *-- "1..*" Facultad : facultades
 ```
@@ -344,25 +344,25 @@ classDiagram
 ```mermaid
 classDiagram
     class Empleado {
-        #int codigo
-        #String nombre
-        #String dni
-        +Empleado(int codigo, String nombre, String dni)
-        +calcularSueldo() double
-        +mostrar() void
+        #codigo: int
+        #nombre: String
+        #dni: String
+        +Empleado(codigo: int, nombre: String, dni: String)
+        +calcularSueldo() : double
+        +mostrar() : void
     }
     class EmpleadoContratado {
-        -double sueldoMensual
-        +EmpleadoContratado(int codigo, String nombre, String dni, double sueldoMensual)
-        +calcularSueldo() double
-        +mostrar() void
+        -sueldoMensual: double
+        +EmpleadoContratado(codigo: int, nombre: String, dni: String, sueldoMensual: double)
+        +calcularSueldo() : double
+        +mostrar() : void
     }
     class EmpleadoPorHoras {
-        -int horasTrabajadas
-        -double tarifaHora
-        +EmpleadoPorHoras(int codigo, String nombre, String dni, int horasTrabajadas, double tarifaHora)
-        +calcularSueldo() double
-        +mostrar() void
+        -horasTrabajadas: int
+        -tarifaHora: double
+        +EmpleadoPorHoras(codigo: int, nombre: String, dni: String, horasTrabajadas: int, tarifaHora: double)
+        +calcularSueldo() : double
+        +mostrar() : void
     }
     Empleado <|-- EmpleadoContratado
     Empleado <|-- EmpleadoPorHoras
@@ -375,24 +375,24 @@ El `Automovil` **no** redefine `calcularAlquiler`: hereda la fórmula tal cual. 
 ```mermaid
 classDiagram
     class Vehiculo {
-        #String codigo
-        #String marca
-        #String modelo
-        #double precioDia
-        +Vehiculo(String codigo, String marca, String modelo, double precioDia)
-        +calcularAlquiler(int dias) double
-        +mostrar(int dias) void
+        #codigo: String
+        #marca: String
+        #modelo: String
+        #precioDia: double
+        +Vehiculo(codigo: String, marca: String, modelo: String, precioDia: double)
+        +calcularAlquiler(dias: int) : double
+        +mostrar(dias: int) : void
     }
     class Automovil {
-        -int cantidadPuertas
-        +Automovil(String codigo, String marca, String modelo, double precioDia, int cantidadPuertas)
-        +mostrar(int dias) void
+        -cantidadPuertas: int
+        +Automovil(codigo: String, marca: String, modelo: String, precioDia: double, cantidadPuertas: int)
+        +mostrar(dias: int) : void
     }
     class Motocicleta {
-        -int cilindrada
-        +Motocicleta(String codigo, String marca, String modelo, double precioDia, int cilindrada)
-        +calcularAlquiler(int dias) double
-        +mostrar(int dias) void
+        -cilindrada: int
+        +Motocicleta(codigo: String, marca: String, modelo: String, precioDia: double, cilindrada: int)
+        +calcularAlquiler(dias: int) : double
+        +mostrar(dias: int) : void
     }
     Vehiculo <|-- Automovil
     Vehiculo <|-- Motocicleta

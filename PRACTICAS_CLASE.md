@@ -25,27 +25,27 @@ Cada una tiene un caso, su diagrama UML, los pasos a seguir y la salida que debe
 ```mermaid
 classDiagram
     class Liga {
-        -String nombre
-        -ArrayList~Equipo~ equipos
-        +Liga(String nombre)
-        +inscribirEquipo(Equipo e) void
-        +totalJugadores() int
-        +mostrar() void
+        -nombre: String
+        -equipos: ArrayList~Equipo~
+        +Liga(nombre: String)
+        +inscribirEquipo(e: Equipo) : void
+        +totalJugadores() : int
+        +mostrar() : void
     }
     class Equipo {
-        -String nombre
-        -ArrayList~Jugador~ jugadores
-        +Equipo(String nombre)
-        +agregarJugador(Jugador j) void
-        +cantidadJugadores() int
-        +mostrar() void
+        -nombre: String
+        -jugadores: ArrayList~Jugador~
+        +Equipo(nombre: String)
+        +agregarJugador(j: Jugador) : void
+        +cantidadJugadores() : int
+        +mostrar() : void
     }
     class Jugador {
-        -String nombre
-        -int numero
-        +Jugador(String nombre, int numero)
-        +getNombre() String
-        +getNumero() int
+        -nombre: String
+        -numero: int
+        +Jugador(nombre: String, numero: int)
+        +getNombre() : String
+        +getNumero() : int
     }
     Liga "1" o-- "*" Equipo : equipos
     Equipo "*" o-- "*" Jugador : jugadores
@@ -84,23 +84,23 @@ Total de jugadores en la liga: 3
 ```mermaid
 classDiagram
     class Edificio {
-        -String nombre
-        -ArrayList~Piso~ pisos
-        +Edificio(String nombre, int cantidadPisos, int oficinasPorPiso)
-        +totalOficinas() int
-        +mostrar() void
+        -nombre: String
+        -pisos: ArrayList~Piso~
+        +Edificio(nombre: String, cantidadPisos: int, oficinasPorPiso: int)
+        +totalOficinas() : int
+        +mostrar() : void
     }
     class Piso {
-        -int numero
-        -ArrayList~Oficina~ oficinas
-        +Piso(int numero, int cantidadOficinas)
-        +cantidadOficinas() int
-        +mostrar() void
+        -numero: int
+        -oficinas: ArrayList~Oficina~
+        +Piso(numero: int, cantidadOficinas: int)
+        +cantidadOficinas() : int
+        +mostrar() : void
     }
     class Oficina {
-        -String codigo
-        +Oficina(String codigo)
-        +getCodigo() String
+        -codigo: String
+        +Oficina(codigo: String)
+        +getCodigo() : String
     }
     Edificio "1" *-- "1..*" Piso : pisos
     Piso "1" *-- "1..*" Oficina : oficinas
@@ -142,25 +142,25 @@ Total de oficinas: 6
 ```mermaid
 classDiagram
     class Cine {
-        -String nombre
-        -ArrayList~Sala~ salas
-        +Cine(String nombre, int cantidadSalas)
-        +getSala(int numero) Sala
-        +mostrar() void
+        -nombre: String
+        -salas: ArrayList~Sala~
+        +Cine(nombre: String, cantidadSalas: int)
+        +getSala(numero: int) : Sala
+        +mostrar() : void
     }
     class Sala {
-        -int numero
-        -ArrayList~Pelicula~ cartelera
-        +Sala(int numero)
-        +programar(Pelicula p) void
-        +mostrar() void
+        -numero: int
+        -cartelera: ArrayList~Pelicula~
+        +Sala(numero: int)
+        +programar(p: Pelicula) : void
+        +mostrar() : void
     }
     class Pelicula {
-        -String titulo
-        -int duracionMin
-        +Pelicula(String titulo, int duracionMin)
-        +getTitulo() String
-        +getDuracionMin() int
+        -titulo: String
+        -duracionMin: int
+        +Pelicula(titulo: String, duracionMin: int)
+        +getTitulo() : String
+        +getDuracionMin() : int
     }
     Cine "1" *-- "1..*" Sala : salas
     Sala "*" o-- "*" Pelicula : cartelera
@@ -201,21 +201,21 @@ Cine USIL Plaza (2 salas)
 ```mermaid
 classDiagram
     class Figura {
-        #String nombre
-        +Figura(String nombre)
-        +calcularArea() double
-        +mostrar() void
+        #nombre: String
+        +Figura(nombre: String)
+        +calcularArea() : double
+        +mostrar() : void
     }
     class Rectangulo {
-        -double base
-        -double altura
-        +Rectangulo(double base, double altura)
-        +calcularArea() double
+        -base: double
+        -altura: double
+        +Rectangulo(base: double, altura: double)
+        +calcularArea() : double
     }
     class Circulo {
-        -double radio
-        +Circulo(double radio)
-        +calcularArea() double
+        -radio: double
+        +Circulo(radio: double)
+        +calcularArea() : double
     }
     Figura <|-- Rectangulo
     Figura <|-- Circulo
@@ -248,23 +248,23 @@ Círculo: área = 28.274333882308138
 ```mermaid
 classDiagram
     class Cuenta {
-        #String numero
-        #double saldo
-        +Cuenta(String numero, double saldo)
-        +saldoFinMes() double
-        +mostrar() void
+        #numero: String
+        #saldo: double
+        +Cuenta(numero: String, saldo: double)
+        +saldoFinMes() : double
+        +mostrar() : void
     }
     class CuentaAhorro {
-        -double tasaInteres
-        +CuentaAhorro(String numero, double saldo, double tasaInteres)
-        +saldoFinMes() double
-        +mostrar() void
+        -tasaInteres: double
+        +CuentaAhorro(numero: String, saldo: double, tasaInteres: double)
+        +saldoFinMes() : double
+        +mostrar() : void
     }
     class CuentaCorriente {
-        -double comision
-        +CuentaCorriente(String numero, double saldo, double comision)
-        +saldoFinMes() double
-        +mostrar() void
+        -comision: double
+        +CuentaCorriente(numero: String, saldo: double, comision: double)
+        +saldoFinMes() : double
+        +mostrar() : void
     }
     Cuenta <|-- CuentaAhorro
     Cuenta <|-- CuentaCorriente
@@ -299,20 +299,20 @@ Cuenta C-001 | saldo: S/ 1000.0
 ```mermaid
 classDiagram
     class Producto {
-        #String nombre
-        #double precio
-        +Producto(String nombre, double precio)
-        +precioFinal() double
-        +mostrar() void
+        #nombre: String
+        #precio: double
+        +Producto(nombre: String, precio: double)
+        +precioFinal() : double
+        +mostrar() : void
     }
     class ProductoFisico {
-        -double costoEnvio
-        +ProductoFisico(String nombre, double precio, double costoEnvio)
-        +precioFinal() double
+        -costoEnvio: double
+        +ProductoFisico(nombre: String, precio: double, costoEnvio: double)
+        +precioFinal() : double
     }
     class ProductoDigital {
-        -double pesoMB
-        +ProductoDigital(String nombre, double precio, double pesoMB)
+        -pesoMB: double
+        +ProductoDigital(nombre: String, precio: double, pesoMB: double)
     }
     Producto <|-- ProductoFisico
     Producto <|-- ProductoDigital
